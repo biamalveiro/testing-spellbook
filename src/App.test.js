@@ -1,8 +1,4 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen, act, fireEvent } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+test("click on bar should filter spell list for that spell type ", async () => {});

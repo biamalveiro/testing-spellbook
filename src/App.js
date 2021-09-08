@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Chart from "./components/Chart";
+import SpellList from "./components/SpellList";
+import { useState } from "react";
 
 function App() {
+  const [activeType, setActiveType] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="p-4">
+      <h1 className="ml-4 text-3xl text-purple-900 font-semibold ">
+        🧙‍♀️ Spellbook
+      </h1>
+      <div className="flex flex-row h-screen">
+        <SpellList activeType={activeType} />
+        <Chart setActiveType={setActiveType} activeType={activeType} />
+      </div>
     </div>
   );
 }
