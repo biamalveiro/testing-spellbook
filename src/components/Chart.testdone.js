@@ -1,4 +1,4 @@
-import { render, screen, act } from "@testing-library/react";
+import { render, screen, act, fireEvent } from "@testing-library/react";
 import Chart from "./Chart";
 import * as api from "../api";
 import { getSpellsGroupedByType } from "../utils";
@@ -77,6 +77,21 @@ test("active type bar should be highlighted", async () => {
   for (const bar of inactiveBars) {
     expect(bar).toHaveAttribute("fill", colors.purpleLight);
   }
+});
+
+test("click on bar calls setActiveType", async () => {
+  // arrange
+  const setActiveType = jest.fn();
+
+  await act(async () =>
+    render(<Chart activeType={null} setActiveType={setActiveType} />)
+  );
+
+  // act
+  const bars = screen.queryAllByTestId(/chart-bar/);
+  fireEvent.click(bars[0]);
+  // assert
+  expect(setActiveType).toHaveBeenCalledTimes(1);
 });
 
 test("should match chart snapshot", async () => {
